@@ -1,6 +1,6 @@
 body {
   text-align: center;
-  /* background-color: darkcyan; */
+  font-family: sans-serif;
   background-image: url("../img/pic1.jpg");
   background-size: contain;
 }
@@ -12,11 +12,18 @@ h1 {
 
 table {
   margin: auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.btn-head {
+  cursor: pointer;
+
 }
 
 .btn {
   border: 2px solid white;
-  background-color: rgba(187, 148, 99, 0.795);
+  /* background-color: rgba(187, 148, 99, 0.795); */
   width: 120px;
   height: 30px;
   margin: auto;
@@ -25,21 +32,20 @@ table {
   border-radius: 10px;
   font-size: 20px;
   padding: 5px;
-  cursor: pointer;
   border-radius: 10px;
-  background-color: rgb(172, 87, 71);
+  background-color: rgba(172, 88, 71, 0.836);
 }
 
 
 table {
-  border: 2px seashell solid;
-  background-color: rgb(12, 11, 19);
+  border: 0.5px seashell solid;
+  background-color: rgba(12, 11, 19, 0.566);
 }
 
 .cell {
-  background-color: rgb(14, 13, 21);
-  height: 25px;
-  width: 25px;
+  background-color: rgba(14, 13, 21, 0.244);
+  height: 28px;
+  width: 28px;
 
 }
 

@@ -1,11 +1,13 @@
 
-// const ALIEN_SPEED = 500;
+const ALIEN_SPEED = 500;
 var gIntervalAliens
+var gIntervalAliensLaser
 
 var gAliensTopRowIdx
 var gAliensBottomRowIdx
 var gIsAlienFreeze
 
+var gAlinesShoot
 var gCountAliens = 0
 
 function createAliens(board) {
@@ -23,6 +25,7 @@ function handleAlienHit(pos) {
     if (!gCountAliens) {
         displayModal(true)
     }
+
 }
 
 function moveAliens(fromI, toI) {
@@ -41,16 +44,29 @@ function moveAliens(fromI, toI) {
             toI++
             fromI++
             shiftBoardRight(gBoard, fromI, toI)
+            while (true) {
+                if (gBoard[gAliensBottomRowIdx][toI] === '' &&
+                    gBoard[gAliensBottomRowIdx - 1][toI] === '' &&
+                    gBoard[gAliensBottomRowIdx - 2][toI] === '') {
+                    toI--
+                } else break
+            }
         } else if (fromI > toI) {
             toI--
             fromI--
             shiftBoardLeft(gBoard, fromI, toI)
+            while (true) {
+                if (gBoard[gAliensBottomRowIdx][toI] === '' &&
+                    gBoard[gAliensBottomRowIdx - 1][toI] === '' &&
+                    gBoard[gAliensBottomRowIdx - 2][toI] === '') {
+                    toI++
+                } else break
+            }
         }
-    }, 1000)
+    }, ALIEN_SPEED)
 }
 
 function shiftBoardRight(board, fromI, toI) {
-
     for (var i = gAliensBottomRowIdx; i >= gAliensTopRowIdx; i--) {
         for (var j = toI; j >= fromI; j--) {
             if (j === fromI) board[i][j] = ''
@@ -62,7 +78,6 @@ function shiftBoardRight(board, fromI, toI) {
 }
 
 function shiftBoardLeft(board, fromI, toI) {
-
     for (var i = gAliensBottomRowIdx; i >= gAliensTopRowIdx; i--) {
         for (var j = toI; j <= fromI; j++) {
             if (j === fromI) board[i][j] = ''
@@ -86,3 +101,39 @@ function shiftBoardDown(board, fromI, toI) {
     gAliensTopRowIdx++
     if (gAliensBottomRowIdx === 12) displayModal(false)
 }
+
+function aliensLaser() {
+    var cell = getEmptyCell(gAliensBottomRowIdx)
+    console.log(cell);
+    gAlinesShoot = setInterval(shootAliens, 500, cell)
+}
+
+function shootAliens(pos) {
+    if (!gIsPlay) return
+    if (gHero.pos.j === pos.j && gHero.pos.i === pos.i + 1) {
+        gHero.lives--
+        if (gHero.lives < 1) {
+            updateCell(pos)
+            displayModal(false)
+            return
+        } else {
+            var elLives = document.querySelector('.lives')
+            elLives.innerHTML = '💖'.repeat(gHero.lives)
+            clearInterval(gAlinesShoot)
+            updateCell(pos)
+            updateCell(gHero.pos, HERO)
+            return
+        }
+    }
+    if (pos.i < 12) {
+        if (pos.i > gAliensBottomRowIdx) updateCell(pos)
+        pos.i = ++pos.i
+        if (pos.i > gAliensBottomRowIdx) updateCell(pos, ALIEN_LASER)
+    } else {
+        updateCell(pos)
+        clearInterval(gAlinesShoot)
+    }
+}
+
+
+

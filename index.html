@@ -12,13 +12,18 @@
 <body onload="init()" onkeydown="onKeyDown(event)">
     <h1>Space Invaders Challenge</h1>
     <div class="btn-head">
-        <div class="btn score">score:<span>0</span></div>
-        <div class="btn stop" onclick="stopAliens(this)">stop</div>
+        <div class="btn" onclick="startGame(this)">Start-Game</div>
+        <div class="btn pause" onclick="stopAliens(this)">Pause</div>
     </div>
-<div class="board"></div>
+    <div class="board"></div>
 
-<div class="modal"><span></span><br><button onclick="restart()" class="restart">restart</button></div>
-
+    <div class="btn-bottom">
+        <div class="btn super-laser">🚀🚀🚀</div>
+        <div class="btn score">score:<span>0</span></div>
+        <div class="btn lives">💖💖💖</div>
+    </div>
+    <div class="modal"><span></span><br><button onclick="restart()" class="restart">restart</button></div>
+    
 
 
 

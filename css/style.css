@@ -1,15 +1,22 @@
 body {
   text-align: center;
-  background-color: darkcyan;
+  /* background-color: darkcyan; */
+  background-image: url("../img/pic1.jpg");
+  background-size: contain;
 }
 
-table{
+h1 {
+  color: white;
+
+}
+
+table {
   margin: auto;
 }
 
 .btn {
   border: 2px solid white;
-  background-color: rgba(228, 180, 117, 0.795);
+  background-color: rgba(187, 148, 99, 0.795);
   width: 120px;
   height: 30px;
   margin: auto;
@@ -23,16 +30,25 @@ table{
   background-color: rgb(172, 87, 71);
 }
 
-table .floor{
-  background-color:chocolate
+
+table {
+  border: 2px seashell solid;
+  background-color: rgb(12, 11, 19);
 }
 
 .cell {
-  height: 20px;
-  width: 20px;
-  background-color: tan;
+  background-color: rgb(14, 13, 21);
+  height: 25px;
+  width: 25px;
+
 }
 
+table .floor {
+  background-image: url("../img/ground.png");
+  /* background-image: url("/img/ground.png"); */
+  background-size: contain;
+  /* background-size:100%; */
+}
 
 .modal {
   position: absolute;

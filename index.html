@@ -12,27 +12,26 @@
 <body onload="init()" onkeydown="onKeyDown(event)">
     <h1>Space Invaders Challenge</h1>
     <div class="btn-head">
-        <div class="btn" onclick="startGame(this)">Start-Game</div>
-        <div class="btn pause" onclick="stopAliens(this)">Pause</div>
+        <div class="btn btn-play" onclick="startGame(this)">Start-Game</div>
+        <div class="btn btn-play" onclick="stopAliens(this)">Pause</div>
     </div>
-    <div class="board"></div>
-
     <div class="btn-bottom">
         <div class="btn super-laser">🚀🚀🚀</div>
         <div class="btn score">score:<span>0</span></div>
         <div class="btn lives">💖💖💖</div>
     </div>
+    <div class="board"></div>
+
     <div class="modal"><span></span><br><button onclick="restart()" class="restart">restart</button></div>
     <div class="btn-click">
-        <div class="btn bomb" onclick="blowUpNeighbors()">💥</div>
-        <div class="btn shoot" onclick="shoot({i:gHero.pos.i, j:gHero.pos.j});">🔫</div>
-        <div class="btn" onclick="onKeyDown({key:'x'})">🚀</div>
+        <img class="btn-bomb" onclick="blowUpNeighbors()" src="img/dynamite.png" />
+        <img class="btn-bomb" onclick="shoot({i:gHero.pos.i, j:gHero.pos.j})" src="img/bullet.png" />
+        <img class="btn-bomb" onclick="onKeyDown({key:'x'})" src="img/super-bullet.png" />
     </div>
     <div>
-        <div class="btn left" onclick="moveHero({i:gHero.pos.i, j:gHero.pos.j-1})">⬅</div>
-        <div class="btn right" onclick="moveHero({i:gHero.pos.i, j:gHero.pos.j+1})">➡</div>
+        <img class="arrows" onclick="moveHero({i:gHero.pos.i, j:gHero.pos.j-1})" height="50px" src="img/left.png" />
+        <img class="arrows" onclick="moveHero({i:gHero.pos.i, j:gHero.pos.j+1})" height="50px" src="img/right.png" />
     </div>
-
 
 
     <script src="js/game.js"></script>

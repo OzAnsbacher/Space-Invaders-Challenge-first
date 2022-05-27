@@ -21,7 +21,26 @@ table {
 
 }
 
+.arrows{
+  margin: 20px;
+}
+
+.btn-bomb{
+  width: 50px;
+  height:50px;
+  background-color: rgba(128, 128, 128, 0.185);
+  border: 1px lightcyan solid;
+  border-radius: 7%;
+  margin: 20px;
+}
+
+img{
+  cursor: pointer;
+}
+
 .btn {
+
+  background-color: rgba(172, 88, 71, 0.836);
   border: 2px solid white;
   /* background-color: rgba(187, 148, 99, 0.795); */
   width: 120px;
@@ -30,12 +49,20 @@ table {
   margin-left: 3px;
   display: inline-block;
   border-radius: 10px;
-  font-size: 20px;
+  font-size: 15px;
+  
   padding: 5px;
   border-radius: 10px;
-  background-color: rgba(172, 88, 71, 0.836);
+  
 }
 
+.btn-play{
+  width: 100px;
+  height: 25px;
+  color: antiquewhite;
+  background-color: rgb(42, 65, 65);
+  border: 2px solid white;
+}
 
 table {
   border: 0.5px seashell solid;

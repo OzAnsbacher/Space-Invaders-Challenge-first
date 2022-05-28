@@ -10,6 +10,42 @@ h1 {
 
 }
 
+.btn-start {
+  background-color: antiquewhite;
+  border: 2px solid white;
+ margin-top: 30%;
+  width: 120px;
+  height: 30px;
+  margin: auto;
+  display: inline-block;
+  border-radius: 10px;
+  font-size: 15px;
+  color: rgba(78, 26, 16, 0.836);
+  padding: 5px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.start{
+  display: none;
+}
+
+
+.begin {
+  padding-top: 60px;
+  font-size: 30px;
+  color: antiquewhite;
+    position: absolute;
+  margin-left: 30%;
+  background-image: url("../img/pic2.jpg");
+  background-size: contain;
+  border: 3px beige solid;
+  border-radius: 8%;
+  height: 40%;
+  width: 40%;
+  margin-top: 100px;
+}
+
 table {
   margin: auto;
   margin-top: 10px;
@@ -21,20 +57,20 @@ table {
 
 }
 
-.arrows{
+.arrows {
   margin: 20px;
 }
 
-.btn-bomb{
+.btn-bomb {
   width: 50px;
-  height:50px;
+  height: 50px;
   background-color: rgba(128, 128, 128, 0.185);
   border: 1px lightcyan solid;
   border-radius: 7%;
   margin: 20px;
 }
 
-img{
+img {
   cursor: pointer;
 }
 
@@ -50,13 +86,13 @@ img{
   display: inline-block;
   border-radius: 10px;
   font-size: 15px;
-  
+
   padding: 5px;
   border-radius: 10px;
-  
+
 }
 
-.btn-play{
+.btn-play {
   width: 100px;
   height: 25px;
   color: antiquewhite;

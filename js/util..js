@@ -7,6 +7,8 @@ function createBoard(SIZE, variable) {
             board[i][j] = variable;
         }
     }
+
+    board[10][0] = board[10][1] =board[10][12] = board[10][13] = WALL
     return board;
 }
 

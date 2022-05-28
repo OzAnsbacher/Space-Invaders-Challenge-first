@@ -1,5 +1,5 @@
 
-const ALIEN_SPEED = 500;
+var ALIEN_SPEED = 1000;
 var gIntervalAliens
 var gIntervalAliensLaser
 
@@ -11,7 +11,7 @@ var gAlinesShoot
 var gCountAliens = 0
 
 function createAliens(board) {
-    gAliens = []
+
     for (var i = 0; i < ALIENS_ROW_COUNT; i++) {
         for (var j = 0; j < ALIENS_ROW_LENGTH; j++) {
             gCountAliens++
@@ -97,20 +97,24 @@ function shiftBoardDown(board, fromI, toI) {
             else board[i][j] = board[i - 1][j]
         }
     }
-    renderBoard(board, '.board')
     gAliensTopRowIdx++
+    renderBoard(board, '.board')
     if (gAliensBottomRowIdx === 12) displayModal(false)
 }
 
 function aliensLaser() {
     var cell = getEmptyCell(gAliensBottomRowIdx)
-    console.log(cell);
     gAlinesShoot = setInterval(shootAliens, 500, cell)
 }
 
 function shootAliens(pos) {
     if (!gIsPlay) return
     if (gHero.pos.j === pos.j && gHero.pos.i === pos.i + 1) {
+        if (gHeroProtector.active) {
+            updateCell(pos)
+            clearInterval(gAlinesShoot)
+            return
+        }
         gHero.lives--
         if (gHero.lives < 1) {
             updateCell(pos)
@@ -125,13 +129,14 @@ function shootAliens(pos) {
             return
         }
     }
-    if (pos.i < 12) {
+    if (pos.i < 12 && gBoard[pos.i + 1][pos.j] !== WALL) {
         if (pos.i > gAliensBottomRowIdx) updateCell(pos)
         pos.i = ++pos.i
         if (pos.i > gAliensBottomRowIdx) updateCell(pos, ALIEN_LASER)
     } else {
         updateCell(pos)
         clearInterval(gAlinesShoot)
+        if (gBoard[pos.i + 1][pos.j] === WALL) updateCell({ i: pos.i + 1, j: pos.j })
     }
 }
 

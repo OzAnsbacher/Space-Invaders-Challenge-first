@@ -4,6 +4,7 @@ var gLaserPos
 var gLaserInterval
 var isNKeyDown
 var gSuperLaser
+var gHeroProtector
 
 var gHero
 
@@ -12,7 +13,7 @@ function createHero(board) {
         pos: { i: 12, j: 5 },
         laserSpeed: 3,
         score: 0,
-        lives:3
+        lives: 3
     }
     board[gHero.pos.i][gHero.pos.j] = HERO_IMG
     var elBtn = document.querySelector('.super-laser')
@@ -42,6 +43,9 @@ function onKeyDown(event) {
         case 'n':
             blowUpNeighbors()
             break;
+        case 'z':
+            heroProtector()
+            break;
     }
 }
 
@@ -65,16 +69,32 @@ function shoot(pos) {
         gLaserPos = pos
         gHero.isShoot = true
         var speed = 150
+        console.log(111);
         if (gSuperLaser && gHero.laserSpeed > 0) {
             speed = LASER_SPEED
             gHero.laserSpeed--
             var elBtn = document.querySelector('.super-laser')
             elBtn.innerHTML = gHero.laserSpeed ? '🚀'.repeat(gHero.laserSpeed) : '---'
         }
-
         gLaserInterval = setInterval(blinkLaser, speed, gLaserPos)
     }
 }
+// function shoot(pos) {
+//     if (!gIsPlay) return
+//     if (!gLaserPos) {
+//         gLaserPos = pos
+//         gHero.isShoot = true
+//         var speed = 150
+//         if (gSuperLaser && gHero.laserSpeed > 0) {
+//             speed = LASER_SPEED
+//             gHero.laserSpeed--
+//             var elBtn = document.querySelector('.super-laser')
+//             elBtn.innerHTML = gHero.laserSpeed ? '🚀'.repeat(gHero.laserSpeed) : '---'
+//         }
+
+//         gLaserInterval = setInterval(blinkLaser, speed, gLaserPos)
+//     }
+// }
 
 
 function blinkLaser(pos) {
@@ -110,7 +130,7 @@ function blinkLaser(pos) {
         elScore.innerHTML = gHero.score
         clearInterval(gLaserInterval)
         updateCell(pos)
-        gSuperLaser=false
+        gSuperLaser = false
         gLaserPos = ''
     } else {
         if (gHero.pos.i !== pos.i) updateCell(pos)
@@ -126,4 +146,22 @@ function blowUpNeighbors() {
         isNKeyDown = false
     }, 300)
 }
+
+function heroProtector() {
+    if (gHeroProtector.num < 1) return
+    gHeroProtector.active = true
+    var elBtn = document.querySelector('.level')
+    elBtn.innerHTML = gHeroProtector.num ? '🔒'.repeat(gHeroProtector.num) : '---'
+    gHeroProtector.num--
+    HERO_IMG = '<img height="20px" src="img/protect.png" />'
+    updateCell(gHero.pos, HERO)
+    setTimeout(() => {
+        gHeroProtector.active = false
+        HERO_IMG = '<img height="20px" src="img/space-ship.png" />'
+        updateCell(gHero.pos, HERO)
+    }, 5000)
+}
+
+
+
 

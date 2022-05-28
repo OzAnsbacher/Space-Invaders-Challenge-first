@@ -11,24 +11,42 @@
 
 <body onload="init()" onkeydown="onKeyDown(event)">
     <h1>Space Invaders Challenge</h1>
+    <div class="begin aliens-style">Select aliens <br><br>
+        <img height="50px" onclick="createImgAliens(1)" src="img/ufo1.png" />
+        <img height="50px" onclick="createImgAliens(2)" src="img/ufo2.png" />
+        <img height="50px" onclick="createImgAliens(3)" src="img/ufo3.png" />
+        <br>
+        <div class="btn-start" onclick="createImgAliens(0)">Default</div>
+    </div>
+    <div class="begin start"> YOU IN <br>
+        <div class="btn-start" onclick="startGame(false)">mobail</div>
+        <div class="btn-start" onclick="startGame(true)">computer</div>
+    </div>
     <div class="btn-head">
-        <div class="btn btn-play" onclick="startGame(this)">Start-Game</div>
+        <div class="btn btn-play" onclick="startGame()">Restart</div>
         <div class="btn btn-play" onclick="stopAliens(this)">Pause</div>
+    </div>
+    <div class="btn-head">
+        <div class="btn btn-play" onclick="getLevel({rowLength:5,count:3,speed:1000}) ">easy</div>
+        <div class="btn btn-play" onclick="getLevel({rowLength:8,count:3,speed:500}) ">medium</div>
+        <div class="btn btn-play" onclick="getLevel({rowLength:10,count:3,speed:300}) ">hard</div>
     </div>
     <div class="btn-bottom">
         <div class="btn super-laser">🚀🚀🚀</div>
         <div class="btn score">score:<span>0</span></div>
         <div class="btn lives">💖💖💖</div>
+        <div class="btn level">🔒🔒🔒</div>
     </div>
     <div class="board"></div>
 
     <div class="modal"><span></span><br><button onclick="restart()" class="restart">restart</button></div>
-    <div class="btn-click">
+    <div class="btn-click computer">
+        <img class="btn-bomb" onclick="heroProtector()" src="img/protect.png" />
         <img class="btn-bomb" onclick="blowUpNeighbors()" src="img/dynamite.png" />
         <img class="btn-bomb" onclick="shoot({i:gHero.pos.i, j:gHero.pos.j})" src="img/bullet.png" />
         <img class="btn-bomb" onclick="onKeyDown({key:'x'})" src="img/super-bullet.png" />
     </div>
-    <div>
+    <div class="computer">
         <img class="arrows" onclick="moveHero({i:gHero.pos.i, j:gHero.pos.j-1})" height="50px" src="img/left.png" />
         <img class="arrows" onclick="moveHero({i:gHero.pos.i, j:gHero.pos.j+1})" height="50px" src="img/right.png" />
     </div>
